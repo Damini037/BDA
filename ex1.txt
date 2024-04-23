@@ -1,0 +1,1011 @@
+Sure, here are the Hive commands for each of the tasks:
+
+i. Create a database named Employee_DB:
+```sql
+CREATE DATABASE IF NOT EXISTS Employee_DB;
+```
+
+ii. Create a table employee with columns (empid, ename, designation, department) partitioned by department:
+```sql
+CREATE TABLE IF NOT EXISTS Employee_DB.employee (
+    empid INT,
+    ename STRING,
+    designation STRING,
+    department STRING
+)
+PARTITIONED BY (department STRING);
+```
+
+iii. Show the structure of employee table:
+```sql
+DESCRIBE Employee_DB.employee;
+```
+
+iv. Modify the name of column ename to emp_name:
+```sql
+ALTER TABLE Employee_DB.employee CHANGE COLUMN ename emp_name STRING;
+```
+
+v. Add the column salary:
+```sql
+ALTER TABLE Employee_DB.employee ADD COLUMNS (salary INT);
+```
+
+vi. Rename table to employee_new:
+```sql
+ALTER TABLE Employee_DB.employee RENAME TO employee_new;
+```
+
+vii. Delete a table employee_new:
+```sql
+DROP TABLE IF EXISTS Employee_DB.employee_new;
+```
+---------------------------------------------------------------------------------------------------------------------------------
+
+Sure, here are the Hive commands for each of your tasks:
+
+i. Create a database named Student_DB:
+```sql
+CREATE DATABASE IF NOT EXISTS Student_DB;
+```
+
+ii. Create a table student with columns (class, division, roll_no, sname) partitioned by class:
+```sql
+CREATE TABLE IF NOT EXISTS Student_DB.student (
+    class INT,
+    division STRING,
+    roll_no INT,
+    sname STRING
+)
+PARTITIONED BY (class INT);
+```
+
+iii. Show the structure of student table:
+```sql
+DESCRIBE Student_DB.student;
+```
+
+iv. Modify the name of column sname to student_name:
+```sql
+ALTER TABLE Student_DB.student CHANGE COLUMN sname student_name STRING;
+```
+
+v. Add the column percentage:
+```sql
+ALTER TABLE Student_DB.student ADD COLUMN percentage DOUBLE;
+```
+
+vi. Rename table to student_new:
+```sql
+ALTER TABLE Student_DB.student RENAME TO student_new;
+```
+
+vii. Delete a table student_new:
+```sql
+DROP TABLE IF EXISTS Student_DB.student_new;
+```
+
+These are the basic Hive commands to achieve the tasks you described.
+-----------------------------------------------------------------------------------------------------------------------------
+Here are the Hive queries for your requirements:
+
+i. Creating a database named Employee_DB:
+```sql
+CREATE DATABASE IF NOT EXISTS Employee_DB;
+```
+
+ii. Creating a table named employee with columns (empid, ename, designation, department, salary):
+```sql
+CREATE TABLE IF NOT EXISTS Employee_DB.employee (
+    empid INT,
+    ename STRING,
+    designation STRING,
+    department STRING,
+    salary INT
+);
+```
+
+iii. Inserting five records into the employee table:
+```sql
+INSERT INTO Employee_DB.employee (empid, ename, designation, department, salary)
+VALUES
+    (101, 'John Doe', 'Manager', 'HR', 50000),
+    (102, 'Jane Smith', 'Developer', 'IT', 60000),
+    (103, 'Alice Johnson', 'Analyst', 'Finance', 55000),
+    (104, 'Bob Williams', 'Designer', 'Marketing', 52000),
+    (105, 'Charlie Brown', 'Tester', 'QA', 48000);
+```
+
+iv. Updating the salary of the employee whose empid is 101 to 40000:
+```sql
+UPDATE Employee_DB.employee
+SET salary = 40000
+WHERE empid = 101;
+```
+
+v. Deleting the record of the employee whose empid is 101:
+```sql
+DELETE FROM Employee_DB.employee
+WHERE empid = 101;
+```
+
+These queries should accomplish what you've outlined. Let me know if you need further assistance!
+------------------------------------------------------------------------------------------------------------------------------------------
+Sure, here are the Hive queries for the tasks you've mentioned:
+
+i. **Create a database named Student_DB:**
+```sql
+CREATE DATABASE IF NOT EXISTS Student_DB;
+```
+
+ii. **Create a table student with columns (class, division, roll_no, sname, percentage) partitioned by class:**
+```sql
+CREATE TABLE IF NOT EXISTS Student_DB.student (
+    class INT,
+    division STRING,
+    roll_no INT,
+    sname STRING,
+    percentage FLOAT
+)
+PARTITIONED BY (class INT);
+```
+
+v. **Insert the five records into student table:**
+```sql
+INSERT INTO TABLE Student_DB.student PARTITION (class)
+VALUES
+    (10, 'A', 1, 'John', 75.5),
+    (10, 'B', 2, 'Alice', 80.0),
+    (11, 'A', 3, 'Bob', 85.25),
+    (11, 'B', 4, 'Emma', 70.75),
+    (12, 'A', 5, 'Michael', 90.0);
+```
+
+vi. **Update the percentage of student to 80 whose roll_no is 4:**
+```sql
+UPDATE Student_DB.student
+SET percentage = 80.0
+WHERE roll_no = 4;
+```
+
+vii. **Delete the record of student whose roll_no is 4:**
+```sql
+DELETE FROM Student_DB.student
+WHERE roll_no = 4;
+```
+
+These queries should help you accomplish the tasks you've outlined.
+---------------------------------------------------------------------------------------------------------------------------------------
+Here are the Hive queries for your requirements:
+
+i. Create a database named Employee_DB:
+```sql
+CREATE DATABASE IF NOT EXISTS Employee_DB;
+```
+
+ii. Create a table employee with columns (empid, ename, designation, department, salary):
+```sql
+CREATE TABLE IF NOT EXISTS Employee_DB.employee (
+    empid INT,
+    ename STRING,
+    designation STRING,
+    department STRING,
+    salary DECIMAL(10, 2)
+);
+```
+
+iii. Insert the ten records into employee table:
+```sql
+INSERT INTO Employee_DB.employee VALUES
+(1, 'John Doe', 'Manager', 'Sales', 25000),
+(2, 'Jane Smith', 'Sales Associate', 'Sales', 22000),
+(3, 'Mike Johnson', 'Developer', 'IT', 30000),
+(4, 'Emily Brown', 'HR Manager', 'HR', 28000),
+(5, 'David Lee', 'Accountant', 'Finance', 26000),
+(6, 'Sarah Adams', 'Analyst', 'IT', 27000),
+(7, 'Chris Taylor', 'Marketing Specialist', 'Marketing', 21000),
+(8, 'Alex Clark', 'Engineer', 'Engineering', 32000),
+(9, 'Rachel White', 'Sales Associate', 'Sales', 23000),
+(10, 'Tom Wilson', 'Developer', 'IT', 31000);
+```
+
+iv. Retrieve the employee records that have salary greater than 20000 and from “sales” department:
+```sql
+SELECT * FROM Employee_DB.employee WHERE salary > 20000 AND department = 'Sales';
+```
+
+v. Calculate the average salary obtained by employees from all departments. Result should display the department and average salary:
+```sql
+SELECT department, AVG(salary) AS avg_salary FROM Employee_DB.employee GROUP BY department;
+```
+
+vi. Retrieve the name of the department having an average salary greater than 20000:
+```sql
+SELECT department FROM (
+    SELECT department, AVG(salary) AS avg_salary FROM Employee_DB.employee GROUP BY department
+) AS dept_avg WHERE avg_salary > 20000;
+```
+
+These queries should help you achieve your tasks in Hive. Let me know if you need further assistance!
+--------------------------------------------------------------------------------------------------------------------------------------------
+Here are the Hive queries for the tasks you've outlined:
+
+i. Create a database named Student_DB:
+
+```sql
+CREATE DATABASE IF NOT EXISTS Student_DB;
+```
+
+ii. Create a table student with columns (class, division, roll_no, sname, percentage) partitioned by class:
+
+```sql
+CREATE TABLE IF NOT EXISTS Student_DB.student (
+    class STRING,
+    division STRING,
+    roll_no INT,
+    sname STRING,
+    percentage FLOAT
+)
+PARTITIONED BY (class STRING);
+```
+
+iii. Insert the ten records into student table:
+
+```sql
+-- Assuming the data is provided in a file named student_data.csv
+-- Make sure the data file is in the appropriate HDFS directory
+LOAD DATA INPATH 'hdfs://path_to_data_directory/student_data.csv' INTO TABLE Student_DB.student PARTITION (class);
+```
+
+iv. Retrieve the student records that have percentage greater than 60 and from “TY” class:
+
+```sql
+SELECT * FROM Student_DB.student WHERE percentage > 60 AND class = 'TY';
+```
+
+v. Calculate the average percentage obtained by students from “TY” Class. Result should display the class and average percentage:
+
+```sql
+SELECT class, AVG(percentage) AS avg_percentage
+FROM Student_DB.student
+WHERE class = 'TY'
+GROUP BY class;
+```
+
+vi. Retrieve the name of class having average percentage greater than 60:
+
+```sql
+SELECT class
+FROM (
+    SELECT class, AVG(percentage) AS avg_percentage
+    FROM Student_DB.student
+    GROUP BY class
+) AS avg_table
+WHERE avg_percentage > 60;
+```
+
+These queries should help you accomplish the tasks you've outlined in Hive. Adjust the table and file paths as necessary based on your actual setup.
+--------------------------------------------------------------------------------------------------------------------------------
+Here are the Pig scripts for your requirements:
+
+i. Create a database named Employee_DB:
+```pig
+-- Create database Employee_DB
+CREATE DATABASE Employee_DB;
+```
+
+ii. Create a table employee with columns (empid, ename, department, salary):
+```pig
+-- Create table employee
+CREATE TABLE Employee_DB.employee (
+    empid INT,
+    ename CHARARRAY,
+    department CHARARRAY,
+    salary INT
+);
+```
+
+iii. Insert the ten records into employee table:
+```pig
+-- Insert ten records into employee table
+INSERT INTO Employee_DB.employee VALUES
+(1, 'John', 'HR', 25000),
+(2, 'Alice', 'IT', 28000),
+(3, 'Bob', 'Finance', 30000),
+(4, 'Emily', 'Marketing', 22000),
+(5, 'David', 'IT', 26000),
+(6, 'Sarah', 'HR', 23000),
+(7, 'Michael', 'Finance', 32000),
+(8, 'Emma', 'Marketing', 27000),
+(9, 'Ryan', 'IT', 24000),
+(10, 'Olivia', 'HR', 21000);
+```
+
+iv. Load the employee data from the HDFS. Utilize the FOREACH operator to transform the employee table to extract the fields 'empid', 'ename', 'salary', and display the output:
+```pig
+-- Load employee data from HDFS
+employee_data = LOAD '/path/to/employee_data' USING PigStorage(',') AS (empid: int, ename: chararray, department: chararray, salary: int);
+
+-- Transform and display fields using FOREACH
+transformed_data = FOREACH employee_data GENERATE empid, ename, salary;
+DUMP transformed_data;
+```
+
+v. Filter the employee data to retrieve records of employees earning a salary greater than 20,000:
+```pig
+-- Filter employees earning salary greater than 20,000
+high_salary_employees = FILTER employee_data BY salary > 20000;
+DUMP high_salary_employees;
+```
+
+Replace '/path/to/employee_data' with the actual path to your employee data file in HDFS. Make sure to adjust the script according to your HDFS setup and the actual data format if it's different.
+--------------------------------------------------------------------------------------------------------------------------
+Sure, here are the Pig scripts for the tasks you've listed:
+
+i. Create a database named Employee_DB:
+
+```pig
+-- Create a database named Employee_DB
+CREATE DATABASE Employee_DB;
+```
+
+ii. Create a table employee with columns (empid, ename, department, salary):
+
+```pig
+-- Create a table employee with columns (empid, ename, department, salary)
+employee_data = LOAD 'input/employee_data.csv' USING PigStorage(',') AS (empid:int, ename:chararray, department:chararray, salary:float);
+
+-- Store the data into the Employee_DB database and employee table
+STORE employee_data INTO 'Employee_DB.employee' USING org.apache.hive.hcatalog.pig.HCatStorer();
+```
+
+iii. Insert the ten records into employee table:
+
+```pig
+-- Insert the ten records into employee table (assuming data is loaded from a file)
+employee_data = LOAD 'input/employee_data.csv' USING PigStorage(',') AS (empid:int, ename:chararray, department:chararray, salary:float);
+
+-- Store the data into the Employee_DB database and employee table
+STORE employee_data INTO 'Employee_DB.employee' USING org.apache.hive.hcatalog.pig.HCatStorer();
+```
+
+iv. Group the employee dataset by department and display the output:
+
+```pig
+-- Group the employee dataset by department
+grouped_data = GROUP employee_data BY department;
+
+-- Display the output
+DUMP grouped_data;
+```
+
+v. Sort the employee dataset based on the salary field in descending order:
+
+```pig
+-- Sort the employee dataset based on the salary field in descending order
+sorted_data = ORDER employee_data BY salary DESC;
+
+-- Display the sorted output
+DUMP sorted_data;
+```
+
+Make sure to replace `'input/employee_data.csv'` with the appropriate file path containing your employee data. Additionally, adjust the data types and field names according to your actual data structure.
+-------------------------------------------------------------------------------------------------------------------------------
+Sure, here's a set of Pig scripts to accomplish each of the tasks you mentioned:
+
+```pig
+-- i. Create a database named Student_DB
+CREATE DATABASE Student_DB;
+
+-- ii. Create a table student_info with columns (exam_no, name, class, department)
+student_info = LOAD 'path_to_student_info_data' USING PigStorage(',') AS (exam_no:int, name:chararray, class:chararray, department:chararray);
+STORE student_info INTO 'Student_DB.student_info' USING org.apache.hive.hcatalog.pig.HCatStorer();
+
+-- iii. Insert the five records into student table.
+-- You can load the data and store it directly into the table using the HCatStorer as shown above.
+
+-- iv. Create a table result_info with columns (exam_no, percentage, grade)
+result_info = LOAD 'path_to_result_info_data' USING PigStorage(',') AS (exam_no:int, percentage:float, grade:chararray);
+STORE result_info INTO 'Student_DB.result_info' USING org.apache.hive.hcatalog.pig.HCatStorer();
+
+-- v. Insert the five records into result_info table.
+-- Similar to loading data into student_info table.
+
+-- vi. Perform an inner join between the student_info and result_info and display output.
+student_result_join = JOIN student_info BY exam_no, result_info BY exam_no;
+result = FOREACH student_result_join GENERATE student_info::exam_no, student_info::name, student_info::class, student_info::department, result_info::percentage, result_info::grade;
+DUMP result;
+```
+
+Make sure to replace `'path_to_student_info_data'` and `'path_to_result_info_data'` with the paths to your actual data files. Also, ensure that you have the necessary permissions and configurations set up for Hive and HCatalog integration with Pig.
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Sure, here's how you can write Pig scripts to accomplish each of the tasks you listed:
+
+i. Create a database named Student_DB:
+
+```pig
+-- Create database Student_DB
+CREATE DATABASE Student_DB;
+```
+
+ii. Create a table student_info with columns (exam_no, name, department, class, division):
+
+```pig
+-- Create table student_info
+student_info = LOAD 'input/student_info.csv' USING PigStorage(',') AS (
+    exam_no: int,
+    name: chararray,
+    department: chararray,
+    class: int,
+    division: chararray
+);
+
+-- Store student_info into Student_DB
+STORE student_info INTO 'output/student_info' USING org.apache.hive.hcatalog.pig.HCatStorer('dbname=Student_DB,table=student_info');
+```
+
+iii. Insert the five records into student table:
+
+You can load the data from a CSV file and store it directly as shown in the previous step.
+
+iv. Create a table result_info with columns (exam_no, percentage, grade):
+
+```pig
+-- Create table result_info
+result_info = LOAD 'input/result_info.csv' USING PigStorage(',') AS (
+    exam_no: int,
+    percentage: float,
+    grade: chararray
+);
+
+-- Store result_info into Student_DB
+STORE result_info INTO 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatStorer('dbname=Student_DB,table=result_info');
+```
+
+v. Insert the five records into student table:
+
+Again, you can load the data from a CSV file and store it directly as shown in step iii.
+
+vi. Perform the left, right and full outer join between the student_info and result_info and display output:
+
+```pig
+-- Load tables from Student_DB
+student_info = LOAD 'output/student_info' USING org.apache.hive.hcatalog.pig.HCatLoader();
+result_info = LOAD 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatLoader();
+
+-- Left outer join
+left_join_result = JOIN student_info BY exam_no LEFT OUTER, result_info BY exam_no;
+-- Store left_join_result if needed
+-- STORE left_join_result INTO 'output/left_join_result' USING PigStorage(',');
+
+-- Right outer join
+right_join_result = JOIN student_info BY exam_no RIGHT OUTER, result_info BY exam_no;
+-- Store right_join_result if needed
+-- STORE right_join_result INTO 'output/right_join_result' USING PigStorage(',');
+
+-- Full outer join
+full_outer_join_result = JOIN student_info BY exam_no FULL OUTER, result_info BY exam_no;
+-- Store full_outer_join_result if needed
+-- STORE full_outer_join_result INTO 'output/full_outer_join_result' USING PigStorage(',');
+
+-- Display the results
+DUMP left_join_result;
+DUMP right_join_result;
+DUMP full_outer_join_result;
+```
+
+Make sure to replace 'input/student_info.csv' and 'input/result_info.csv' with the paths to your input CSV files containing student information and result information respectively. Also, adjust the storage paths accordingly based on your Hadoop/Hive setup.
+-------------------------------------------------------------------------------------------------------------------------
+Here's how you can write Pig scripts to accomplish each of the tasks:
+
+i. Create a database named Student_DB:
+
+```pig
+-- Create database Student_DB
+CREATE DATABASE Student_DB;
+```
+
+ii. Create a table result_info with columns (exam_no, name, percentage):
+
+```pig
+-- Create table result_info
+result_info = LOAD 'input/result_info.csv' USING PigStorage(',') AS (
+    exam_no: int,
+    name: chararray,
+    percentage: float
+);
+
+-- Store result_info into Student_DB
+STORE result_info INTO 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatStorer('dbname=Student_DB,table=result_info');
+```
+
+iii. Insert the ten records into result_info table:
+
+You can load the data from a CSV file and store it directly as shown in the previous step.
+
+iv. Find the top three rankers and display their details:
+
+```pig
+-- Load table from Student_DB
+result_info = LOAD 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatLoader();
+
+-- Rank the students based on percentage
+ranked_result = RANK result_info BY percentage DESC;
+
+-- Get the top three rankers
+top_three_rankers = LIMIT ranked_result 3;
+
+-- Display the details of top three rankers
+DUMP top_three_rankers;
+```
+
+Make sure to replace 'input/result_info.csv' with the path to your input CSV file containing the result information. Also, adjust the storage paths accordingly based on your Hadoop/Hive setup.
+-------------------------------------------------------------------------------------------------------------------------------------
+Here's how you can write Pig scripts to accomplish each of the tasks:
+
+i. Create a database named Student_DB:
+
+```pig
+-- Create database Student_DB
+CREATE DATABASE Student_DB;
+```
+
+ii. Create a table result_info with columns (exam_no, name, percentage):
+
+```pig
+-- Create table result_info
+result_info = LOAD 'input/result_info.csv' USING PigStorage(',') AS (
+    exam_no: int,
+    name: chararray,
+    percentage: float
+);
+
+-- Store result_info into Student_DB
+STORE result_info INTO 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatStorer('dbname=Student_DB,table=result_info');
+```
+
+iii. Insert the ten records into result_info table:
+
+You can load the data from a CSV file and store it directly as shown in the previous step.
+
+iv. Randomly sample 20% of records from the result_info dataset to conduct statistical analysis and display the output:
+
+```pig
+-- Load table from Student_DB
+result_info = LOAD 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatLoader();
+
+-- Sample 20% of records
+sampled_result = SAMPLE result_info 0.2;
+
+-- Display the sampled records
+DUMP sampled_result;
+```
+
+v. Divide the result_info dataset into two separate datasets based on a condition on their percentage being greater than or equal to 60% or below 60%:
+
+```pig
+-- Load table from Student_DB
+result_info = LOAD 'output/result_info' USING org.apache.hive.hcatalog.pig.HCatLoader();
+
+-- Split the dataset based on percentage condition
+above_60_percent = FILTER result_info BY percentage >= 60;
+below_60_percent = FILTER result_info BY percentage < 60;
+
+-- Store the divided datasets if needed
+-- STORE above_60_percent INTO 'output/above_60_percent' USING PigStorage(',');
+-- STORE below_60_percent INTO 'output/below_60_percent' USING PigStorage(',');
+
+-- Display the divided datasets
+DUMP above_60_percent;
+DUMP below_60_percent;
+```
+
+Make sure to replace 'input/result_info.csv' with the path to your input CSV file containing the result information. Also, adjust the storage paths accordingly based on your Hadoop/Hive setup.
+--------------------------------------------------------------------------------------------------------------------------------------------
+Sure, let's tackle each task one by one.
+
+### Task i: Demonstrate the use of various functions to handle data in R workspace
+
+```R
+# a) ls() - Lists the objects in the current workspace
+ls()
+
+# b) rm() - Removes objects from the workspace
+# For example, to remove an object named "my_data"
+rm(my_data)
+
+# c) getwd() - Get the current working directory
+getwd()
+
+# d) save() - Save one or more R objects to a file
+# For example, to save objects "data1" and "data2" to a file named "my_data.RData"
+save(data1, data2, file = "my_data.RData")
+
+# e) load() - Load R objects saved in a file
+load("my_data.RData")
+```
+
+### Task ii: Write a script to take student information and calculate total marks and percentage
+
+```R
+# Function to calculate total marks and percentage
+calculate_marks <- function(marks) {
+  total <- sum(marks)
+  percentage <- (total / (length(marks) * 100)) * 100
+  return(list(total = total, percentage = percentage))
+}
+
+# Function to display student information
+display_student_info <- function(roll_no, name, marks) {
+  cat("Roll No:", roll_no, "\n")
+  cat("Name:", name, "\n")
+  cat("Marks:", marks, "\n")
+  marks_info <- calculate_marks(marks)
+  cat("Total Marks:", marks_info$total, "\n")
+  cat("Percentage:", marks_info$percentage, "%\n")
+}
+
+# Taking student information as input
+roll_no <- readline(prompt = "Enter Roll No: ")
+name <- readline(prompt = "Enter Name: ")
+marks <- numeric(5)
+for (i in 1:5) {
+  marks[i] <- as.numeric(readline(prompt = paste("Enter marks for subject", i, ": ")))
+}
+
+# Displaying student information
+display_student_info(roll_no, name, marks)
+```
+
+### Task iii: Display the list of Built-in Datasets in R, summarize one, and plot the graph
+
+```R
+# Displaying built-in datasets
+data()
+
+# Choose a dataset, let's say 'iris' dataset
+# Summarize the dataset
+summary(iris)
+
+# Plotting a graph (let's say a scatterplot of Sepal Length vs. Sepal Width)
+plot(iris$Sepal.Length, iris$Sepal.Width, 
+     xlab = "Sepal Length", ylab = "Sepal Width",
+     main = "Scatterplot of Sepal Length vs. Sepal Width")
+```
+
+You can run each block of code in RStudio to see the results. Let me know if you need further clarification or assistance!
+------------------------------------------------------------------------------------------------------------------------------------------------
+Sure, let's tackle each task one by one.
+
+### Task i: Create a CSV file containing student information and read it in R console
+
+First, let's create a CSV file named "student_info.csv" containing student information such as roll number, name, and percentage.
+
+```R
+# Create a data frame with student information
+student_info <- data.frame(
+  roll_no = c(1, 2, 3, 4, 5),
+  name = c("John", "Alice", "Bob", "Emily", "David"),
+  percentage = c(85, 90, 78, 92, 80)
+)
+
+# Write the data frame to a CSV file
+write.csv(student_info, "student_info.csv", row.names = FALSE)
+```
+
+Now, let's read the CSV file in R console and display the data:
+
+```R
+# Read the CSV file
+read_student_info <- read.csv("student_info.csv")
+
+# Display the data
+print(read_student_info)
+```
+
+### Task ii: Create student information data in R console and store it into a CSV file
+
+```R
+# Create student information data in R console
+new_student_info <- data.frame(
+  roll_no = c(6, 7, 8),
+  name = c("Sophia", "Michael", "Emma"),
+  percentage = c(88, 95, 82)
+)
+
+# Store the data into a CSV file
+write.csv(new_student_info, "new_student_info.csv", row.names = FALSE)
+```
+
+Now, you can check the file "new_student_info.csv" in your working directory, and it will contain the newly created student information.
+
+You can run each block of code in RStudio to perform the tasks. Let me know if you need further clarification or assistance!
+--------------------------------------------------------------------------------------------------------------------------
+Sure, here's how you can accomplish those tasks in RStudio:
+
+i. Creating the data frame for Student Information and displaying students based on their performance:
+
+```R
+# Creating the data frame for Student Information
+student_info <- data.frame(
+  roll_no = c(1, 2, 3, 4, 5),
+  student_name = c("Alice", "Bob", "Charlie", "David", "Eve"),
+  percentage = c(75, 55, 85, 65, 95)
+)
+
+# Displaying students who have failed (percentage < 40)
+failed_students <- subset(student_info, percentage < 40)
+print("Failed Students:")
+print(failed_students)
+
+# Displaying students who have passed (percentage >= 40)
+passed_students <- subset(student_info, percentage >= 40)
+print("Passed Students:")
+print(passed_students)
+
+# Displaying students who got second class (percentage >= 50 and < 60)
+second_class_students <- subset(student_info, percentage >= 50 & percentage < 60)
+print("Second Class Students:")
+print(second_class_students)
+
+# Displaying students who got first class (percentage >= 60 and < 75)
+first_class_students <- subset(student_info, percentage >= 60 & percentage < 75)
+print("First Class Students:")
+print(first_class_students)
+
+# Displaying students who got distinction (percentage >= 75)
+distinction_students <- subset(student_info, percentage >= 75)
+print("Distinction Students:")
+print(distinction_students)
+```
+
+ii. Creating the data frame for Employee Information and displaying employees with salary greater than 30,000 without the designation column:
+
+```R
+# Creating the data frame for Employee Information
+employee_info <- data.frame(
+  emp_id = c(101, 102, 103, 104, 105),
+  emp_name = c("John", "Jane", "Mike", "Emily", "Chris"),
+  designation = c("Manager", "Clerk", "Developer", "Analyst", "Designer"),
+  salary = c(40000, 25000, 35000, 28000, 45000)
+)
+
+# Displaying employees with salary greater than 30,000 without designation column
+high_salary_employees <- subset(employee_info, salary > 30000, select = c(emp_id, emp_name, salary))
+print("Employees with Salary > 30,000:")
+print(high_salary_employees)
+```
+
+These scripts should help you achieve the tasks you mentioned in RStudio. Let me know if you need further assistance!
+--------------------------------------------------------------------------------------------------------------------------------
+Sure, here's how you can accomplish those tasks in RStudio:
+
+i. Creating two data frames containing Student Information and merging them based on exam number:
+
+```R
+# Create first data frame containing (exam no, name)
+student_info1 <- data.frame(
+  exam_no = c(1, 2, 3, 4, 5),
+  name = c("Alice", "Bob", "Charlie", "David", "Eve")
+)
+
+# Create second data frame containing (exam no, marks of 5 subjects)
+student_info2 <- data.frame(
+  exam_no = c(1, 2, 3, 4, 5),
+  S1 = c(85, 70, 90, 75, 95),
+  S2 = c(80, 65, 85, 70, 90),
+  S3 = c(75, 60, 80, 65, 85),
+  S4 = c(70, 55, 75, 60, 80),
+  S5 = c(65, 50, 70, 55, 75)
+)
+
+# Merge the two data frames based on exam number
+merged_student_info <- merge(student_info1, student_info2, by = "exam_no")
+
+# Display the merged result
+print("Merged Student Information:")
+print(merged_student_info)
+```
+
+ii. Creating two data frames containing Student Information and merging them based on (exam no, name):
+
+```R
+# Create first data frame containing (exam no, name, class)
+student_info1 <- data.frame(
+  exam_no = c(1, 2, 3, 4, 5),
+  name = c("Alice", "Bob", "Charlie", "David", "Eve"),
+  class = c("A", "B", "A", "C", "B")
+)
+
+# Create second data frame containing (exam no, name, marks of 5 subjects)
+student_info2 <- data.frame(
+  exam_no = c(1, 2, 3, 4, 5),
+  name = c("Alice", "Bob", "Charlie", "David", "Eve"),
+  S1 = c(85, 70, 90, 75, 95),
+  S2 = c(80, 65, 85, 70, 90),
+  S3 = c(75, 60, 80, 65, 85),
+  S4 = c(70, 55, 75, 60, 80),
+  S5 = c(65, 50, 70, 55, 75)
+)
+
+# Merge the two data frames based on (exam no, name)
+merged_student_info <- merge(student_info1, student_info2, by = c("exam_no", "name"))
+
+# Display the merged result
+print("Merged Student Information:")
+print(merged_student_info)
+```
+
+These scripts should help you achieve the tasks you mentioned in RStudio. Let me know if you need further assistance!
+-----------------------------------------------------------------------------------------------------------------------------
+Sure, here's how you can accomplish those tasks in RStudio:
+
+i. Creating two data frames containing Student Information and combining specific columns using `cbind()`:
+
+```R
+# Create first data frame containing Details (rollno, name, class)
+Details <- data.frame(
+  rollno = c(1, 2, 3, 4, 5),
+  name = c("Alice", "Bob", "Charlie", "David", "Eve"),
+  class = c("A", "B", "A", "C", "B")
+)
+
+# Create second data frame containing Marks (rollno, name, total_marks, percentage)
+Marks <- data.frame(
+  rollno = c(1, 2, 3, 4, 5),
+  name = c("Alice", "Bob", "Charlie", "David", "Eve"),
+  total_marks = c(450, 480, 430, 470, 490),
+  percentage = c(90, 96, 86, 94, 98)
+)
+
+# Display the data of the two data frames
+print("Details data frame:")
+print(Details)
+print("Marks data frame:")
+print(Marks)
+
+# Combine specific columns using cbind()
+combined_data <- cbind(Details[, c(1, 2, 3)], Marks[, c(3, 4)])
+
+# Display the combined data
+print("Combined Data:")
+print(combined_data)
+```
+
+ii. Creating two data frames containing employee information and combining them using `rbind()`:
+
+```R
+# Create first data frame containing sales_dept (empid, name)
+sales_dept <- data.frame(
+  empid = c(101, 102, 103),
+  name = c("John", "Jane", "Mike")
+)
+
+# Create second data frame containing finance_dept (empid, name)
+finance_dept <- data.frame(
+  empid = c(201, 202, 203),
+  name = c("Emily", "Chris", "Emma")
+)
+
+# Combine the rows of the two data frames using rbind()
+combined_employee_info <- rbind(sales_dept, finance_dept)
+
+# Display the combined result
+print("Combined Employee Information:")
+print(combined_employee_info)
+```
+
+These scripts should help you accomplish the tasks you mentioned in RStudio. Let me know if you need further assistance!
+--------------------------------------------------------------------------------------------------------------------------------------
+Sure, here's how you can accomplish those tasks in RStudio:
+
+```R
+# Task i: Creating and sorting employee data frame
+# Create employee data frame
+Employee <- data.frame(
+  empid = c(101, 102, 103, 104),
+  name = c("John", "Alice", "Bob", "Emily"),
+  salary = c(50000, 60000, 45000, 70000)
+)
+
+# Display employee data frame
+print("Original Employee Data Frame:")
+print(Employee)
+
+# Sort employee data frame by salary in increasing order
+Employee_sorted <- Employee[order(Employee$salary),]
+
+# Display sorted employee data frame
+print("Sorted Employee Data Frame by Salary (Increasing Order):")
+print(Employee_sorted)
+
+# Task ii: Creating and sorting student data frame
+# Create student data frame
+Student <- data.frame(
+  rollno = c(201, 202, 203, 204),
+  name = c("David", "Eva", "Frank", "Grace"),
+  division = c("A", "B", "A", "C"),
+  percentage = c(85, 78, 90, 82)
+)
+
+# Display student data frame
+print("Original Student Data Frame:")
+print(Student)
+
+# Sort student data frame first by division in increasing order, then by percentage in decreasing order
+Student_sorted <- Student[order(Student$division, -Student$percentage),]
+
+# Display sorted student data frame
+print("Sorted Student Data Frame by Division (Increasing Order) and Percentage (Decreasing Order):")
+print(Student_sorted)
+```
+
+This code creates two data frames, one for employees and one for students, and sorts them according to the specified criteria. Let me know if you need further assistance!
+---------------------------------------------------------------------------------------------------------------------------
+Certainly! Here's how you can complete those tasks in RStudio:
+
+```R
+# Load required library
+library(reshape2)
+
+# i. Create data frame containing student information
+Student <- data.frame(
+  rollno = c(101, 102, 103, 104),
+  name = c("John", "Alice", "Bob", "Emily"),
+  S1 = c(85, 90, 78, 92),
+  S2 = c(75, 80, 85, 88),
+  S3 = c(80, 88, 92, 85)
+)
+
+# Display student data frame
+print("Original Student Data Frame:")
+print(Student)
+
+# ii. Apply melt() function to create long format
+Student_long <- melt(Student, id.vars = c("rollno", "name"), measure.vars = c("S1", "S2", "S3"))
+
+# Display long format data frame
+print("Student Data Frame in Long Format:")
+print(Student_long)
+
+# iii. Apply dcast() function to create wide format
+Student_wide <- dcast(Student_long, rollno + name ~ variable, value.var = "value")
+
+# Rename columns for clarity
+colnames(Student_wide) <- c("rollno", "name", "Subject1", "Subject2", "Subject3")
+
+# Display wide format data frame
+print("Student Data Frame in Wide Format:")
+print(Student_wide)
+```
+
+This code accomplishes the tasks you provided by creating a student data frame, converting it to long format using `melt()`, and then converting it back to wide format using `dcast()`. Let me know if you need further explanation!
+---------------------------------------------------------------------------------------------------------------------------
+Certainly! Here's how you can create the data frame and display the requested details in RStudio:
+
+```R
+# Create data frame containing employee information
+Employee <- data.frame(
+  empid = c(101, 102, 103, 104, 105, 106, 107, 108, 109, 110),
+  name = c("John", "Alice", "Bob", "Emily", "David", "Eva", "Frank", "Grace", "Henry", "Ivy"),
+  salary = c(50000, 60000, 45000, 70000, 55000, 65000, 48000, 72000, 53000, 68000)
+)
+
+# i. Display all the records in data frame
+print("All Records in Employee Data Frame:")
+print(Employee)
+
+# ii. Display first 3 rows in data frame
+print("First 3 Rows in Employee Data Frame:")
+print(Employee[1:3, ])
+
+# iii. Display last 3 rows in data frame
+print("Last 3 Rows in Employee Data Frame:")
+print(Employee[(nrow(Employee) - 2):nrow(Employee), ])
+
+# iv. Display only the second column of data frame
+print("Second Column of Employee Data Frame:")
+print(Employee[, 2])
+```
+
+This code creates a data frame with ten employee records and then displays the requested details, including all records, first 3 rows, last 3 rows, and only the second column of the data frame. Let me know if you need further assistance!
